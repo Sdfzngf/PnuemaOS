@@ -1,5 +1,5 @@
 import PnuemaOS.BIOSf;
 __attribute__((section(".text"))) void _start() {
-  PnuemaOS::BIOSf::test();
+  PnuemaOS::BIOSf::print("Hello World");
   __asm__ volatile("hlt");
 }

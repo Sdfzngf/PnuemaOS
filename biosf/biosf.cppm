@@ -3,8 +3,7 @@ module;
 export module PnuemaOS.BIOSf;
 
 export namespace PnuemaOS::BIOSf {
-void test() {
-  const char *msg = "LoaderTest\r\n";
+void print(const char* msg) {
   for (int i = 0; msg[i]; i++) {
     __asm__ volatile("int $0x10"
                      :
