@@ -12,4 +12,6 @@ SECTIONS
     .sig : {
         SHORT(0xAA55)
     }
+
+    ASSERT( . <= 0x7E00, "Error: Image too large!" )
 }

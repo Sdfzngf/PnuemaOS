@@ -3,12 +3,14 @@ module;
 export module PnuemaOS.BIOSf;
 
 export namespace PnuemaOS::BIOSf {
-void print(const char* msg) {
-  for (int i = 0; msg[i]; i++) {
-    __asm__ volatile("int $0x10"
-                     :
-                     : "a"((0x0E << 8) | msg[i]), "b"(0x0007)
-                     : "cc", "memory");
+auto VGA_ADDRESS = reinterpret_cast<char *>(0xB8000);
+auto print(const char *msg) -> void {
+  int i(0);
+  while (*msg) {
+    VGA_ADDRESS[i] = *msg;
+    VGA_ADDRESS[i + 1] = 0x04;
+    msg++;
+    i += 2;
   }
 }
 } // namespace PnuemaOS::BIOSf
