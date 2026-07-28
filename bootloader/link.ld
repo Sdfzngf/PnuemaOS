@@ -8,6 +8,11 @@ SECTIONS
     }
     .rodata : { *(.rodata*) }
     .data : { *(.data*) }
+    . = 0x7DBE;
+    .sig2 : SUBALIGN(1) {
+        /*SHORT(0x0180)*/
+        *(.sig2*)
+    }
     . = 0x7DFE;
     .sig : {
         SHORT(0xAA55)

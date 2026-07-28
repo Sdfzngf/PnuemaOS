@@ -12,6 +12,7 @@ add_executable(PnuemaOS_bootloader boot.cpp)
 target_compile_options(PnuemaOS_bootloader PRIVATE
     -target i386-none-elf
     -m16
+    -O0
     -ffreestanding
     -nostdlib
     -mno-red-zone
@@ -31,5 +32,5 @@ target_compile_features(PnuemaOS_bootloader PRIVATE cxx_std_26)
 target_link_libraries(PnuemaOS_bootloader PRIVATE biosf-8086)
 
 add_custom_command(TARGET PnuemaOS_bootloader POST_BUILD
-    COMMAND objcopy -O binary -j .text -j .rodata -j .data -j .sig $<TARGET_FILE:PnuemaOS_bootloader> ${CMAKE_BINARY_DIR}/bin/loader.img
+    COMMAND objcopy -O binary -j .text -j .rodata -j .data -j .sig -j .sig2 $<TARGET_FILE:PnuemaOS_bootloader> ${CMAKE_BINARY_DIR}/bin/loader.img
 )
