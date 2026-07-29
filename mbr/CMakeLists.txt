@@ -38,5 +38,5 @@ target_compile_features(PnuemaOS_mbr PRIVATE cxx_std_26)
 target_link_libraries(PnuemaOS_mbr PRIVATE biosf-8086)
 
 add_custom_command(TARGET PnuemaOS_mbr POST_BUILD
-    COMMAND objcopy -O binary $<TARGET_FILE:PnuemaOS_mbr> ${CMAKE_BINARY_DIR}/bin/loader.img
+    COMMAND objcopy -O binary $<TARGET_FILE:PnuemaOS_mbr> ${CMAKE_BINARY_DIR}/bin/mbr.img
 )
